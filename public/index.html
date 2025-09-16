@@ -54,7 +54,7 @@
             <div class="tab-content" id="codeTabContent">
                 <div class="tab-pane fade show active position-relative" id="js" role="tabpanel">
                     <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
-                    <pre><code>fetch('http://randomusers/api/users?page=1&limit=5')
+                    <pre><code>fetch('https://randomusers-ten.vercel.app/api/users?page=1&limit=5')
   .then(res =&gt; res.json())
   .then(data =&gt; console.log(data));</code></pre>
                 </div>
@@ -62,14 +62,14 @@
                     <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
                     <pre><code>import requests
 
-res = requests.get("http://randomusers/api/users?page=1&limit=5")
+res = requests.get("https://randomusers-ten.vercel.app/api/users?page=1&limit=5")
 print(res.json())</code></pre>
                 </div>
                 <div class="tab-pane fade position-relative" id="node" role="tabpanel">
                     <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
                     <pre><code>import axios from 'axios';
 
-axios.get('http://randomusers/api/users?page=1&limit=5')
+axios.get('https://randomusers-ten.vercel.app/api/users?page=1&limit=5')
   .then(res => console.log(res.data));</code></pre>
                 </div>
                 <div class="tab-pane fade position-relative" id="csharp" role="tabpanel">
@@ -78,7 +78,7 @@ axios.get('http://randomusers/api/users?page=1&limit=5')
 using System.Threading.Tasks;
 
 var client = new HttpClient();
-var response = await client.GetStringAsync("http://randomusers/api/users?page=1&limit=5");
+var response = await client.GetStringAsync("https://randomusers-ten.vercel.app/api/users?page=1&limit=5");
 Console.WriteLine(response);</code></pre>
                 </div>
             </div>

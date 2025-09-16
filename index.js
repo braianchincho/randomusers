@@ -15,11 +15,11 @@ const swaggerOptions = {
         info: {
             title: "Users API",
             version: "1.0.0",
-            description: "API de ejemplo con usuarios random",
+            description: "API for generating random user data",
         },
         servers: [
             {
-                url: "http://localhost:3000/api",
+                url: "/api",
             },
         ],
     },
@@ -27,12 +27,13 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
+
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(express.static("public"));
-app.get('/', (req, res) => {
-    res.send('Hello dfdffdWorld!');
-});
 
+app.get('/', (req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
 
 app.use('/api', router);
 
