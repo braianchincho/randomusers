@@ -1,0 +1,75 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Random Users API",
+    "version": "1.0.0",
+    "description": "API de ejemplo con usuarios random"
+  },
+  "servers": [
+    {
+      "url": "https://randomusers-ten.vercel.app/api"
+    }
+  ],
+  "paths": {
+    "/users": {
+      "get": {
+        "summary": "Get random users",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Number of users per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of random users",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "page": { "type": "integer" },
+                    "limit": { "type": "integer" },
+                    "totalPages": { "type": "integer" },
+                    "totalUsers": { "type": "integer" },
+                    "users": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "firstName": { "type": "string" },
+                          "lastName": { "type": "string" },
+                          "userName": { "type": "string" },
+                          "age": { "type": "integer" },
+                          "gender": { "type": "string" },
+                          "avatar": { "type": "string", "format": "uri" },
+                          "email": { "type": "string", "format": "email" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
