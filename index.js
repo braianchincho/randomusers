@@ -3,6 +3,7 @@ import router from './app/routes/user.route.js';
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import path from 'path';
+import fs from 'fs';
 
 const app = express();
 const PORT = 3000;
@@ -34,6 +35,9 @@ app.get('/swagger.json', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'public', 'swagger.json'));
 });
 
+app.get('/swagger', (req, res) => {
+    res.sendFile(path.join(process.cwd(), 'public', 'swagger.html'));
+});
 
 app.use('/api', router);
 
