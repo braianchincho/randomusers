@@ -35,6 +35,10 @@ app.get('/', (req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
+app.get('/documentation', (req, res) => {
+    res.sendFile('swagger.json', { root: 'public' });
+});
+
 app.use('/api', router);
 
 app.listen(PORT, () => {
