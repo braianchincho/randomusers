@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random User API</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+    <section class="hero text-center text-white py-5">
+        <h1 class="display-4">Random User API</h1>
+        <p class="lead">Generate fake users for testing and prototyping</p>
+        <a href="#swagger" class="btn btn-light btn-lg mt-3">View API Docs</a>
+    </section>
+
+    <main class="container my-5">
+        <section id="examples">
+            <h2 class="mb-4">Live Example</h2>
+            <p>Click the button to load random users:</p>
+            <button id="loadUsers" class="btn btn-primary mb-3">Load Random Users</button>
+            <div class="row" id="user-cards"></div>
+        </section>
+
+        <hr class="my-5">
+
+        <section id="code-examples">
+            <h2 class="mb-4">Code Examples</h2>
+
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs mb-3" id="codeTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="js-tab" data-bs-toggle="tab" data-bs-target="#js"
+                        type="button">JavaScript</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="python-tab" data-bs-toggle="tab" data-bs-target="#python"
+                        type="button">Python</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="node-tab" data-bs-toggle="tab" data-bs-target="#node"
+                        type="button">Node.js</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="csharp-tab" data-bs-toggle="tab" data-bs-target="#csharp"
+                        type="button">C#</button>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content" id="codeTabContent">
+                <div class="tab-pane fade show active position-relative" id="js" role="tabpanel">
+                    <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+                    <pre><code>fetch('http://randomusers/api/users?page=1&limit=5')
+  .then(res =&gt; res.json())
+  .then(data =&gt; console.log(data));</code></pre>
+                </div>
+                <div class="tab-pane fade position-relative" id="python" role="tabpanel">
+                    <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+                    <pre><code>import requests
+
+res = requests.get("http://randomusers/api/users?page=1&limit=5")
+print(res.json())</code></pre>
+                </div>
+                <div class="tab-pane fade position-relative" id="node" role="tabpanel">
+                    <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+                    <pre><code>import axios from 'axios';
+
+axios.get('http://randomusers/api/users?page=1&limit=5')
+  .then(res => console.log(res.data));</code></pre>
+                </div>
+                <div class="tab-pane fade position-relative" id="csharp" role="tabpanel">
+                    <button class="btn btn-sm btn-outline-secondary copy-btn">Copy</button>
+                    <pre><code>using System.Net.Http;
+using System.Threading.Tasks;
+
+var client = new HttpClient();
+var response = await client.GetStringAsync("http://randomusers/api/users?page=1&limit=5");
+Console.WriteLine(response);</code></pre>
+                </div>
+            </div>
+        </section>
+
+
+
+        <hr class="my-5">
+
+        <section id="swagger">
+            <h2 class="mb-4">Swagger Documentation</h2>
+            <p>Explore the full API documentation and try requests directly from Swagger UI.</p>
+            <a href="/api-docs" target="_blank" class="btn btn-primary">Open Swagger Docs</a>
+        </section>
+    </main>
+
+    <footer class="text-center py-4 bg-light">
+        <small>© 2025 Random User API - Built with Express</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>
