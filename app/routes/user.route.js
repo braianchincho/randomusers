@@ -8,27 +8,41 @@ const userController = new UserController();
  * @swagger
  * /users:
  *   get:
- *     summary: Retrieve a paginated list of users
- *     description: Returns a list of randomly generated users with pagination support.
+ *     summary: Get a list of random users
+ *     description: Returns a paginated list of randomly generated users. You can optionally filter by gender and age range.
  *     parameters:
  *       - in: query
  *         name: page
  *         schema:
  *           type: integer
  *           default: 1
- *           minimum: 1
- *         description: Page number (starts at 1).
+ *         description: Page number for pagination (optional)
  *       - in: query
  *         name: limit
  *         schema:
  *           type: integer
  *           default: 10
- *           minimum: 1
  *           maximum: 100
- *         description: Number of users per page.
+ *         description: Number of users to return per page (max 100, optional)
+ *       - in: query
+ *         name: gender
+ *         schema:
+ *           type: string
+ *           enum: [male, female]
+ *         description: Filter users by gender (optional)
+ *       - in: query
+ *         name: minAge
+ *         schema:
+ *           type: integer
+ *         description: Minimum age of users (optional)
+ *       - in: query
+ *         name: maxAge
+ *         schema:
+ *           type: integer
+ *         description: Maximum age of users (optional)
  *     responses:
  *       200:
- *         description: A paginated list of users.
+ *         description: A paginated list of random users
  *         content:
  *           application/json:
  *             schema:
@@ -36,16 +50,12 @@ const userController = new UserController();
  *               properties:
  *                 page:
  *                   type: integer
- *                   example: 1
  *                 limit:
  *                   type: integer
- *                   example: 10
  *                 totalPages:
  *                   type: integer
- *                   example: 50
  *                 totalUsers:
  *                   type: integer
- *                   example: 500
  *                 users:
  *                   type: array
  *                   items:
@@ -53,13 +63,19 @@ const userController = new UserController();
  *                     properties:
  *                       firstName:
  *                         type: string
- *                         example: John
  *                       lastName:
  *                         type: string
- *                         example: Doe
  *                       userName:
  *                         type: string
- *                         example: jdoe
+ *                       avatar:
+ *                         type: string
+ *                       email:
+ *                         type: string
+ *                       age:
+ *                         type: integer
+ *                       gender:
+ *                         type: string
+ *                         enum: [male, female]
  */
 
 router.get('/users', userController.getUsers.bind(userController));

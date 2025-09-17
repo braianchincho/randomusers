@@ -1,72 +1,49 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "title": "Random Users API",
+    "title": "Users API",
     "version": "1.0.0",
-    "description": "API de ejemplo con usuarios random"
+    "description": "API for generating random user data"
   },
-  "servers": [
-    {
-      "url": "https://randomusers-ten.vercel.app/api"
-    }
+  "host": "localhost:3000",
+  "basePath": "/api",
+  "schemes": [
+    "http"
   ],
   "paths": {
     "/users": {
       "get": {
-        "summary": "Get random users",
+        "description": "",
         "parameters": [
           {
             "name": "page",
             "in": "query",
-            "description": "Page number",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 1
-            }
+            "type": "string"
           },
           {
             "name": "limit",
             "in": "query",
-            "description": "Number of users per page",
-            "required": false,
-            "schema": {
-              "type": "integer",
-              "default": 10
-            }
+            "type": "string"
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "minAge",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "maxAge",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "List of random users",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "page": { "type": "integer" },
-                    "limit": { "type": "integer" },
-                    "totalPages": { "type": "integer" },
-                    "totalUsers": { "type": "integer" },
-                    "users": {
-                      "type": "array",
-                      "items": {
-                        "type": "object",
-                        "properties": {
-                          "firstName": { "type": "string" },
-                          "lastName": { "type": "string" },
-                          "userName": { "type": "string" },
-                          "age": { "type": "integer" },
-                          "gender": { "type": "string" },
-                          "avatar": { "type": "string", "format": "uri" },
-                          "email": { "type": "string", "format": "email" }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
