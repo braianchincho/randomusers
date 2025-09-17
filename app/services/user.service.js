@@ -21,27 +21,28 @@ const getRandomFromArray = (array) => {
 const randomGender = () => Math.random() < 0.5 ? 'female' : 'male';
 
 const createRandomUser = (gender, minAge = 17, maxAge = 55) => {
-    // const isFemale = Math.random() < 0.5;
-    // const gender = isFemale ? 'female' : 'male';
-    const isFemale = gender === 'female';
-    const arrayFirstName = isFemale ? femaleNames : maleNames;
-    const avatar = getRandomFromArray(isFemale ? femaleFaces : maleFaces);
-    const firstName = getRandomFromArray(arrayFirstName);
+    const isFemale = gender === "female";
+    const firstName = getRandomFromArray(isFemale ? femaleNames : maleNames);
     const lastName = getRandomFromArray(lastNames);
-    const userName = `${firstName.at(0)}${lastName}`.toLowerCase();
-    const email = `${firstName}.${lastName}@${Math.random() < 0.5 ? 'gmail' : 'outlook'}.com`;
-    const age = getRandomNumber(minAge, maxAge);
-    return { firstName, lastName, userName, avatar, email, age, gender };
-}
 
-const getUsers = ({ limit = 100, gender, minAge, maxAge} = {}) => {
-    if (limit > 100) limit = 100;
-    if (!['female', 'male'].includes(gender)) gender = null;
-    const users = [];
-    for (let i = 0; i < limit; i++) {
-        users.push(createRandomUser(!gender ? randomGender() : gender, minAge, maxAge));
-    }
-    return users;
-}
+    return {
+        firstName,
+        lastName,
+        userName: `${firstName[0]}${lastName}`.toLowerCase(),
+        avatar: getRandomFromArray(isFemale ? femaleFaces : maleFaces),
+        email: `${firstName}.${lastName}@${getRandomFromArray(["gmail", "outlook"])}.com`,
+        age: getRandomNumber(minAge, maxAge),
+        gender,
+    };
+};
+
+const getUsers = ({ limit = 100, gender, minAge = 17, maxAge = 55 } = {}) => {
+    const safeLimit = Math.min(limit, 100);
+    const safeGender = ["female", "male"].includes(gender) ? gender : null;
+
+    return Array.from({ length: safeLimit }, () =>
+        createRandomUser(safeGender ?? randomGender(), minAge, maxAge)
+    );
+};
 
 export default {createRandomUser, getUsers };
