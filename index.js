@@ -3,7 +3,7 @@ import router from './app/routes/user.route.js';
 import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import path from 'path';
-
+import cors from 'cors';
 const app = express();
 const PORT = 3000;
 
