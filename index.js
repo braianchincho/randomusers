@@ -4,8 +4,12 @@ import swaggerUi from "swagger-ui-express";
 import swaggerJsdoc from "swagger-jsdoc";
 import path from 'path';
 import cors from 'cors';
+import dotenv from 'dotenv';
+import { sendSwaggerInfo } from './app/services/swagger.service.js';
+
+dotenv.config();
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 
 app.use(express.json());
 app.use(cors());
@@ -30,8 +34,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(process.cwd(), 'public', 'index.html'));
 });
 
-app.get('/swagger.json', (req, res) => {
-    res.sendFile(path.join(process.cwd(), 'public', 'swagger.json'));
+app.get("/swagger_info", async (req, res) => {
+    const filePath = path.join(process.cwd(), "public", "swagger.json");
+    const isProd = dotenv.NODE_ENV === 'production';
+    sendSwaggerInfo(req,res,filePath,isProd);
 });
 
 app.get('/swagger', (req, res) => {

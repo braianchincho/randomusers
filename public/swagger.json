@@ -5,10 +5,10 @@
     "version": "1.0.0",
     "description": "API for generating random user data"
   },
-  "host": "localhost:3000",
+  "host": "localhost",
   "basePath": "/api",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/users": {
