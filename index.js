@@ -8,8 +8,10 @@ import dotenv from 'dotenv';
 import { sendSwaggerInfo } from './app/services/swagger.service.js';
 
 dotenv.config();
+
 const app = express();
 const PORT = 5000;
+const isProd = process.env.NODE_ENV == 'production';
 
 app.use(express.json());
 app.use(cors());
@@ -36,7 +38,6 @@ app.get('/', (req, res) => {
 
 app.get("/swagger_info", async (req, res) => {
     const filePath = path.join(process.cwd(), "public", "swagger.json");
-    const isProd = dotenv.NODE_ENV === 'production';
     sendSwaggerInfo(req,res,filePath,isProd);
 });
 
